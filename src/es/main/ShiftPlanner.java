@@ -20,7 +20,7 @@ import es.shiftplanner.loader.FileLoader;
 public class ShiftPlanner {
 
 	public static void main(String[] args) {
-		Logger.getInstance().log("INICIANDO PLANIFICADOR DE CARTELERAS. Versión 1.4");
+		Logger.getInstance().log("INICIANDO PLANIFICADOR DE CARTELERAS. Versión 1.5");
 		try {
 			FileLoader configLoader = new FileLoader(new InputStreamReader(new FileInputStream(new File(CONFIG_FILE)), FILES_CHARSET_NAME));
 			Configuration configuration = new Configuration();

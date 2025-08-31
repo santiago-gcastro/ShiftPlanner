@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-import es.main.logger.Logger;
 import es.shiftplanner.configuration.Configuration;
 
 /**
@@ -21,7 +20,6 @@ public class DayWorkComparator implements Comparator<DayWork> {
 
 	@Override
 	public int compare(DayWork dw1, DayWork dw2) {
-		Logger.getInstance().log(Arrays.asList(configuration.getOrderFields()).iterator());
 		List<String> orderFields = Arrays.asList(configuration.getOrderFields());
 		for (String field : orderFields) {
 			if (this.compareField(field, dw1, dw2) != 0) {
@@ -32,10 +30,12 @@ public class DayWorkComparator implements Comparator<DayWork> {
 	}
 	
 	private int compareStaff(DayWork dw1, DayWork dw2) {
-		List<String> staffMembers = Arrays.asList(configuration.getStaffMembers()); 
+		List<String> staffMembers = Arrays.asList(configuration.getStaffMembers());
 		if (dw1.getStaffNumber().equals(dw2.getStaffNumber())) {
 			return 0;
 		} else if (staffMembers.contains(dw1.getStaffNumber()) && staffMembers.contains(dw2.getStaffNumber())) {
+			return 0;
+		} else if (!staffMembers.contains(dw1.getStaffNumber()) && !staffMembers.contains(dw2.getStaffNumber())) {
 			return 0;
 		} else if (!staffMembers.contains(dw1.getStaffNumber())) {
 			return 1;

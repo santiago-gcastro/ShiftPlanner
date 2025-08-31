@@ -123,10 +123,13 @@ public final class ShiftTable implements IDataStructure {
 	}
 	private DayWork getFirst() {
 		List<DayWork> outList = this.getOutputList();
-		if (outList.size() >=1 ) {
+		if (outList.size() >= 1) {
 			return outList.get(0);
 		}
-		return null;
+		throw new RuntimeException("Los campos requeridos para cada fila del archivo de entrada son: "
+				+ this.configuration.getDateField() + ", " + this.configuration.getJobField() + " y "
+				+ this.configuration.getShiftField() + ". Al menos alguno de los puestos tiene que ser de esta lista "
+				+ String.join(", ", this.getConfiguration().getJobsForTemplate()));
 	}
 	private DayWork getLast() {
 		List<DayWork> outList = this.getOutputList();
